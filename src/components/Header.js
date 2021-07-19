@@ -1,4 +1,10 @@
 import React from 'react'
+import styled from 'styled-components';
+
+const Link = styled.a`
+    color: #42b983;
+    text-decoration: none;
+`
 
 const Header = () => {
     return (
@@ -8,13 +14,13 @@ const Header = () => {
                 <i>A single-player drinking game created by Marcin Lukanus.</i>
             </p>
             <p>
-                <a
+                <Link
                     href="https://github.com/marcinlukanus/RideTheBus-React" 
                     target="_blank" 
                     rel="noreferrer"
                 >
                     GitHub Repo
-                </a>
+                </Link>
             </p>
         </div>
     )
