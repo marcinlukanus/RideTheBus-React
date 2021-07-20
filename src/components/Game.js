@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 const Button = styled.button`
@@ -27,11 +27,19 @@ const Container = styled.div`
 `
 
 const Game = () => {
+    let [score, setScore] = useState(0);
+
     return (
         <div>
             <Container>
-                <Button primary>Draw Cards</Button>
+                <Button 
+                    primary
+                    onClick={() => setScore(score + 1)}
+                >
+                    Draw Cards
+                </Button>
                 <Button secondary>Rules</Button>
+                <p>Times redrawn: {score}</p>
             </Container>
         </div>
     )
