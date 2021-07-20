@@ -27,6 +27,7 @@ const Button = styled.button`
 const PlayingField = styled.div`
     display: flex;
     flex-wrap: wrap;
+    margin-top: 1em;
 `;
 
 const Game = () => {
