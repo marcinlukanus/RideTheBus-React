@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
+import PlayingCard from './PlayingCard'
+
 const Button = styled.button`
     background: transparent;
     border-radius: 5px;
@@ -22,25 +24,32 @@ const Button = styled.button`
     `}
 `;
 
-const Container = styled.div`
-    text-align: center;
-`
+const PlayingField = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
 
 const Game = () => {
     let [score, setScore] = useState(0);
 
     return (
         <div>
-            <Container>
-                <Button 
-                    primary
-                    onClick={() => setScore(score + 1)}
-                >
-                    Draw Cards
-                </Button>
-                <Button secondary>Rules</Button>
-                <p>Times redrawn: {score}</p>
-            </Container>
+            <Button 
+                primary
+                onClick={() => setScore(score + 1)}
+            >
+                Draw Cards
+            </Button>
+            <Button secondary>Rules</Button>
+
+            <PlayingField>
+                <PlayingCard />
+                <PlayingCard />
+                <PlayingCard />
+                <PlayingCard />
+            </PlayingField>
+
+            <p>Times redrawn: {score}</p>
         </div>
     )
 }
