@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 import PlayingCard from './PlayingCard'
@@ -30,29 +30,48 @@ const PlayingField = styled.div`
     margin-top: 1em;
 `;
 
-const Game = () => {
-    let [score, setScore] = useState(0);
+class Game extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            score: 0,
+            cards: [
+                {},
+                {},
+                {},
+                {}
+            ]
+        }
+    }
 
-    return (
-        <div>
-            <Button 
-                primary
-                onClick={() => setScore(score + 1)}
-            >
-                Draw Cards
-            </Button>
-            <Button secondary>Rules</Button>
+    componentDidMount() {
+        // startGame();
+    }
 
-            <PlayingField>
-                <PlayingCard />
-                <PlayingCard />
-                <PlayingCard />
-                <PlayingCard />
-            </PlayingField>
+    render() {
+        return (
+            <div>
+                <Button 
+                    primary
+                    onClick={() => this.setState({ score: this.state.score + 1 })}
+                >
+                    Draw Cards
+                </Button>
+                <Button secondary>
+                    Rules
+                </Button>
 
-            <p>Times redrawn: {score}</p>
-        </div>
-    )
+                <PlayingField>
+                    <PlayingCard />
+                    <PlayingCard />
+                    <PlayingCard />
+                    <PlayingCard />
+                </PlayingField>
+
+                <p>Times redrawn: {this.state.score}</p>
+            </div>
+        );
+    }
 }
 
 export default Game

@@ -6,24 +6,26 @@ const Link = styled.a`
     text-decoration: none;
 `
 
-const Header = () => {
-    return (
-        <div>
-            <h1>Welcome to RideTheBus!</h1>
-            <p>
-                <i>A single-player drinking game created by Marcin Lukanus.</i>
-            </p>
-            <p>
-                <Link
-                    href="https://github.com/marcinlukanus/RideTheBus-React" 
-                    target="_blank" 
-                    rel="noreferrer"
-                >
-                    GitHub Repo
-                </Link>
-            </p>
-        </div>
-    )
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>Welcome to RideTheBus!</h1>
+                <p>
+                    <i>A single-player drinking game created by Marcin Lukanus.</i>
+                </p>
+                <p>
+                    <Link
+                        href="https://github.com/marcinlukanus/RideTheBus-React" 
+                        target="_blank" 
+                        rel="noreferrer"
+                    >
+                        GitHub Repo
+                    </Link>
+                </p>
+            </div>
+        );
+    }
 }
 
 export default Header

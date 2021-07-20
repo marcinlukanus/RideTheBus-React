@@ -11,12 +11,14 @@ const Card = styled.img`
     width: 226px
 `
 
-const PlayingCard = () => {
-    return (
-        <CardContainer>
-            <Card src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Card_back_06.svg/209px-Card_back_06.svg.png" />
-        </CardContainer>
-    )
+class PlayingCard extends React.Component {
+    render() {
+        return (
+            <CardContainer>
+                <Card src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Card_back_06.svg/209px-Card_back_06.svg.png" />
+            </CardContainer>
+        );
+    }
 }
 
 export default PlayingCard
