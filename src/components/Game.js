@@ -30,6 +30,9 @@ const PlayingField = styled.div`
     margin-top: 1em;
 `;
 
+const NUMBER_OF_CARDS_TO_DRAW = 4;
+const deck = [];
+
 class Game extends React.Component {
     constructor(props) {
         super(props);
@@ -45,7 +48,75 @@ class Game extends React.Component {
     }
 
     componentDidMount() {
-        // startGame();
+        this.generateDeck();
+    }
+
+    startGame() {
+        this.generateCards()
+        this.setState({ score: this.state.score + 1 });
+    }
+
+    generateDeck() {
+        const suits = ['SPADES', 'CLUBS', 'HEARTS', 'DIAMONDS']
+        const numbers = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'JACK', 'QUEEN', 'KING', 'ACE']
+
+        suits.forEach((suit) => {
+            numbers.forEach((number) => {
+                number = this.convertToString(number);
+                let card = {
+                    suit: suit,
+                    color: suit === 'SPADES' || suit === 'CLUBS' ? 'black' : 'red',
+                    value: this.convertToNumber(number),
+                    image: require(`../assets/cards/PNG/${number !== 'A' ? number : 'ACE'}${suit.charAt(0)}.png`)
+                }
+
+                deck.push(card);
+            })
+        })
+    }
+
+    generateCards() {
+        const cards = [];
+
+        for (let i = 0; i < NUMBER_OF_CARDS_TO_DRAW; i++) {
+            let randInt = Math.floor(Math.random() * deck.length);
+
+            cards.push(deck.splice(randInt, 1)[0]);
+        }
+
+        this.setState({ cards: cards }, () => {
+            console.log(this.state.cards);
+        });
+    }
+
+    convertToNumber(value) {
+        switch (value) {
+            case 'A':
+                return 14
+            case 'K':
+                return 13
+            case 'Q':
+                return 12
+            case 'J':
+                return 11
+            default:
+                return Number(value)
+        }
+    }
+    
+    convertToString(cardValue) {
+        switch (cardValue) {
+            case 'ACE':
+                return 'A'
+            case 'KING':
+                return 'K'
+            case 'QUEEN':
+                return 'Q'
+            case 'JACK':
+                return 'J'
+            default:
+                return `${cardValue}`
+        }
     }
 
     render() {
@@ -53,7 +124,7 @@ class Game extends React.Component {
             <div>
                 <Button 
                     primary
-                    onClick={() => this.setState({ score: this.state.score + 1 })}
+                    onClick={() => this.startGame()}
                 >
                     Draw Cards
                 </Button>
