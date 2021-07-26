@@ -123,16 +123,16 @@ class Game extends React.Component {
     }
 
     onCardPressed = (index) => {
-		let originalValue = this.state.cards[index]
-		let flippedCard = {...originalValue, isFlipped: true}
+        let cards = [...this.state.cards]
+        let flippedCard = {
+            ...cards[index],
+            isFlipped: true
+        }
+        cards[index] = flippedCard
 
-		this.setState(({cards}) => ({
-            cards: [
-                ...cards.slice(0, index),
-                flippedCard,
-                ...cards.slice(index + 1)
-            ]
-        }));
+		this.setState({ cards: cards }, () => {
+            console.log(this.state.cards);
+        });
 	}
 
     render() {
@@ -151,19 +151,19 @@ class Game extends React.Component {
                 <PlayingField>
                     <PlayingCard
                         cardState={this.state.cards[0]}
-                        onClick={() => this.onCardPressed(0)}
+                        onCardPressed={() => this.onCardPressed(0)}
                     />
                     <PlayingCard
                         cardState={this.state.cards[1]}
-                        onClick={() => this.onCardPressed(1)}
+                        onCardPressed={() => this.onCardPressed(1)}
                     />
                     <PlayingCard
                         cardState={this.state.cards[2]}
-                        onClick={() => this.onCardPressed(2)}
+                        onCardPressed={() => this.onCardPressed(2)}
                     />
                     <PlayingCard
                         cardState={this.state.cards[3]}
-                        onClick={() => this.onCardPressed(3)}
+                        onCardPressed={() => this.onCardPressed(3)}
                     />
                 </PlayingField>
 
