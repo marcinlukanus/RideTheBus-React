@@ -13,9 +13,18 @@ const Card = styled.img`
 
 class PlayingCard extends React.Component {
     render() {
+        let { cardState, onCardPressed } = this.props
+        let { isFlipped, image } = cardState
+
+        let imageSource = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Card_back_06.svg/209px-Card_back_06.svg.png'
+
+        if (isFlipped) {
+            this.imageSource = image
+        }
+
         return (
             <CardContainer>
-                <Card src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Card_back_06.svg/209px-Card_back_06.svg.png" />
+                <Card src={ imageSource } />
             </CardContainer>
         );
     }
