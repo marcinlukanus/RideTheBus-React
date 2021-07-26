@@ -43,7 +43,9 @@ class Game extends React.Component {
                 {},
                 {},
                 {}
-            ]
+            ],
+            lost: false,
+            won: false,
         }
     }
 
@@ -67,7 +69,8 @@ class Game extends React.Component {
                     suit: suit,
                     color: suit === 'SPADES' || suit === 'CLUBS' ? 'black' : 'red',
                     value: this.convertToNumber(number),
-                    image: require(`../assets/cards/PNG/${number !== 'A' ? number : 'ACE'}${suit.charAt(0)}.png`)
+                    image: require(`../assets/cards/PNG/${number !== 'A' ? number : 'ACE'}${suit.charAt(0)}.png`),
+                    isFlipped: false
                 }
 
                 deck.push(card);
@@ -119,6 +122,19 @@ class Game extends React.Component {
         }
     }
 
+    onCardPressed = (index) => {
+		let originalValue = this.state.cards[index]
+		let flippedCard = {...originalValue, isFlipped: true}
+
+		this.setState(({cards}) => ({
+            cards: [
+                ...cards.slice(0, index),
+                flippedCard,
+                ...cards.slice(index + 1)
+            ]
+        }));
+	}
+
     render() {
         return (
             <div>
@@ -133,10 +149,22 @@ class Game extends React.Component {
                 </Button>
 
                 <PlayingField>
-                    <PlayingCard />
-                    <PlayingCard />
-                    <PlayingCard />
-                    <PlayingCard />
+                    <PlayingCard
+                        cardState={this.state.cards[0]}
+                        onClick={() => this.onCardPressed(0)}
+                    />
+                    <PlayingCard
+                        cardState={this.state.cards[1]}
+                        onClick={() => this.onCardPressed(1)}
+                    />
+                    <PlayingCard
+                        cardState={this.state.cards[2]}
+                        onClick={() => this.onCardPressed(2)}
+                    />
+                    <PlayingCard
+                        cardState={this.state.cards[3]}
+                        onClick={() => this.onCardPressed(3)}
+                    />
                 </PlayingField>
 
                 <p>Times redrawn: {this.state.score}</p>
