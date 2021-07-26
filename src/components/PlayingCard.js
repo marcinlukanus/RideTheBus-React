@@ -19,12 +19,15 @@ class PlayingCard extends React.Component {
         let imageSource = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Card_back_06.svg/209px-Card_back_06.svg.png'
 
         if (isFlipped) {
-            this.imageSource = image
+            imageSource = image
         }
 
         return (
-            <CardContainer>
-                <Card src={ imageSource } />
+            <CardContainer >
+                <Card
+                    onClick={onCardPressed}
+                    src={ imageSource }
+                />
             </CardContainer>
         );
     }
